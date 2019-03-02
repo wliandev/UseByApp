@@ -6,10 +6,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/grocery_toolbar"
+        android:id="@+id/pantry_toolbar"
         android:layout_width="match_parent"
         android:layout_height="89dp"
-        android:background="#FF8C8C"
+        android:background="#009789"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,17 +21,18 @@
         android:id="@+id/grocery_list"
         android:layout_width="wrap_content"
         android:layout_height="585dp"
-        android:scrollbarThumbVertical="@color/light_pink"
-        android:verticalScrollbarPosition="left"
+        android:scrollbarThumbVertical="@color/light_turquoise"
+        android:verticalScrollbarPosition="right"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/grocery_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/pantry_toolbar" />
 
     <Button
         android:id="@+id/grocery_button"
         android:layout_width="206dp"
         android:layout_height="56dp"
         android:background="#FDBEBB"
+        android:onClick="toGroceryActivity"
         android:text="Grocery List"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,7 +47,6 @@
         android:layout_width="206dp"
         android:layout_height="56dp"
         android:background="#6FCEC5"
-        android:onClick="toPantryActivity"
         android:text="Pantry"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

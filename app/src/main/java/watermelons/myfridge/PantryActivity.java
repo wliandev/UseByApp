@@ -5,20 +5,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class GroceryActivity extends AppCompatActivity {
+public class PantryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grocery);
+        setContentView(R.layout.activity_pantry);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.grocery_toolbar);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.pantry_toolbar);
         setSupportActionBar(myToolbar);
 
     }
 
-    public void toPantryActivity(View view){
-        Intent intent = new Intent(this, PantryActivity.class);
+    public void toGroceryActivity(View view){
+        Intent intent = new Intent(this, GroceryActivity.class);
         startActivity(intent);
     }
 
