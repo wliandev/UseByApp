@@ -10,29 +10,32 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroceryAdapter extends ArrayAdapter<Food> {
+public class PantryAdapter extends ArrayAdapter<Food> {
 
     private Context mycontext;
-    private List<Food> myGroceryList;
+    private List<Food> myPantryList;
 
-    public GroceryAdapter(Context context, ArrayList<Food> groceryList) {
+    public PantryAdapter(Context context, ArrayList<Food> pantryList) {
 
         super(context, 0, groceryList);
         mycontext = context;
-        myGroceryList= groceryList;
+        myPantryList= pantryList;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View foodItem = convertView;
         if (foodItem == null) {
-            foodItem = LayoutInflater.from(mycontext).inflate(R.layout.grocery_item, parent, false);
+            foodItem = LayoutInflater.from(mycontext).inflate(R.layout.pantry_item, parent, false);
         }
 
-        Food currentFood = myGroceryList.get(position);
+        Food currentFood = myPantryList.get(position);
 
-        TextView name = foodItem.findViewById(R.id.textView_id);
+        TextView name = foodItem.findViewById(R.id.name);
         name.setText(currentFood.getName());
+
+        TextView expiration = foodItem.findViewById(R.id.expiration);
+        expiration.setText(currentFood.getDays_until_expired());
 
         return foodItem;
     }
