@@ -55,4 +55,22 @@
         app:layout_constraintTop_toBottomOf="@+id/grocery_list"
         app:layout_constraintVertical_bias="1.0" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        app:fabCustomSize="72dp"
+        app:tint="@android:color/white"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        app:backgroundTint="#FF8C8C"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pantry_button"
+        app:layout_constraintStart_toEndOf="@+id/grocery_button"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
 </android.support.constraint.ConstraintLayout>
