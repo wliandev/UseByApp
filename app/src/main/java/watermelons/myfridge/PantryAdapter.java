@@ -17,7 +17,7 @@ public class PantryAdapter extends ArrayAdapter<Food> {
 
     public PantryAdapter(Context context, ArrayList<Food> pantryList) {
 
-        super(context, 0, groceryList);
+        super(context, 0, pantryList);
         mycontext = context;
         myPantryList= pantryList;
     }
@@ -35,7 +35,7 @@ public class PantryAdapter extends ArrayAdapter<Food> {
         name.setText(currentFood.getName());
 
         TextView expiration = foodItem.findViewById(R.id.expiration);
-        expiration.setText(currentFood.getDays_until_expired());
+        expiration.setText(Long.toString(currentFood.getDays_until_expired()) + " days");
 
         return foodItem;
     }

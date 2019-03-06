@@ -16,6 +16,13 @@ public class Food {
         days_until_expired = -1;
     }
 
+    public Food (String name, long exp){ //for testing purposes only
+        this.name = name;
+        dateBought = null;
+        dateExpires = null;
+        days_until_expired = exp;
+    }
+
     public String getName() {
         return name;
     }

@@ -4,6 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class PantryActivity extends AppCompatActivity {
 
@@ -23,8 +27,8 @@ public class PantryActivity extends AppCompatActivity {
         pantryAdapter = new PantryAdapter(this, pantryList);
         pantryListView.setAdapter(pantryAdapter);
 
-        pantryList.add(new Food("Eggs"));
-        pantryList.add(new Food("Butter"));
+        pantryList.add(new Food("Eggs", 2));
+        pantryList.add(new Food("Butter", 3));
 
         //custom action bar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.pantry_toolbar);
