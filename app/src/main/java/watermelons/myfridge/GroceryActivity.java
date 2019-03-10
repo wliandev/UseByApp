@@ -50,16 +50,17 @@ public class GroceryActivity extends AppCompatActivity {
 
     public void addFoodDialog(View view){
 
-        final EditText foodName = new EditText(this);
+        final View view1 = LayoutInflater.from(this).inflate(R.layout.dialog_layout, null);
+        EditText nameText = view1.findViewById(R.id.editText);
+        final String name = String.valueOf(nameText.getText());
 
         AlertDialog.Builder addDialog = new AlertDialog.Builder(this);
         addDialog.setTitle("Add Food to Grocery List");
         addDialog.setMessage("What item do you want to buy?");
-        addDialog.setView(foodName);
+        addDialog.setView(view1);
         addDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String name = String.valueOf(foodName.getText());
                         groceryList.add(new Food(name));
                     }
                 });
