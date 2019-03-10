@@ -52,7 +52,6 @@ public class GroceryActivity extends AppCompatActivity {
         return null;
     }
 
-
     public void itemClicked(View view){
         CheckBox checkBox = (CheckBox)view;
         if (checkBox.isChecked()){

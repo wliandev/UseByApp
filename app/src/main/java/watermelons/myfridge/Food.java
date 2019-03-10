@@ -3,7 +3,7 @@ import java.util.Calendar;
 import java.util.Date; //consider using Joda Time
 import java.util.concurrent.TimeUnit;
 
-public class Food {
+public class Food implements Comparable<Food>{
     private String name;
     private Date dateBought;
     private Date dateExpires;
@@ -59,6 +59,11 @@ public class Food {
         long diffInMillies = Math.abs(dateExpires.getTime() - today.getTime());
         days_until_expired = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
 
+    }
+
+    @Override
+    public int compareTo(Food f) {
+        return (int) ((int) this.days_until_expired - f.getDays_until_expired());
     }
 
 }

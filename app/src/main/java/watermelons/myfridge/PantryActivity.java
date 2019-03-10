@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class PantryActivity extends AppCompatActivity {
 
@@ -27,10 +28,12 @@ public class PantryActivity extends AppCompatActivity {
         pantryAdapter = new PantryAdapter(this, pantryList);
         pantryListView.setAdapter(pantryAdapter);
 
-        pantryList.add(new Food("Apples", 1));
-        pantryList.add(new Food("Eggs", 2));
         pantryList.add(new Food("Butter", 7));
         pantryList.add(new Food( "Carrots", 10));
+        pantryList.add(new Food("Apples", 1));
+        pantryList.add(new Food("Eggs", 2));
+
+        Collections.sort(pantryList);
 
         //custom action bar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.pantry_toolbar);
