@@ -59,7 +59,6 @@
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="1dp"
-        android:tint="#B2B2B2"
         app:srcCompat="@android:drawable/ic_menu_recent_history" />
 
 </RelativeLayout>
