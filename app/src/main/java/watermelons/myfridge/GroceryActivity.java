@@ -1,13 +1,21 @@
 package watermelons.myfridge;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -34,23 +42,31 @@ public class GroceryActivity extends AppCompatActivity {
         groceryAdapter = new GroceryAdapter(this, groceryList);
         groceryListView.setAdapter(groceryAdapter);
 
-        groceryList.add(new Food("Bread"));
-        groceryList.add(new Food("Milk"));
-
         //custom action bar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.grocery_toolbar);
         setSupportActionBar(myToolbar);
 
     }
 
-    public Food searchItem(String string) {
-        for (Food f : groceryList){
-            if (f.getName().equals(string)){
-                return f;
-            }
+    public void addFoodDialog(View view){
+
+        final EditText foodName = new EditText(this);
+
+        AlertDialog.Builder addDialog = new AlertDialog.Builder(this);
+        addDialog.setTitle("Add Food to Grocery List");
+        addDialog.setMessage("What item do you want to buy?");
+        addDialog.setView(foodName);
+        addDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String name = String.valueOf(foodName.getText());
+                        groceryList.add(new Food(name));
+                    }
+                });
+        addDialog.create();
+        addDialog.show();
         }
-        return null;
-    }
+
 
     public void itemClicked(View view){
         CheckBox checkBox = (CheckBox)view;

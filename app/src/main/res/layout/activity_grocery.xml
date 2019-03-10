@@ -73,6 +73,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/pantry_button"
         app:layout_constraintStart_toEndOf="@+id/grocery_button"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:onClick="addFoodDialog"/>
 
 </android.support.constraint.ConstraintLayout>
