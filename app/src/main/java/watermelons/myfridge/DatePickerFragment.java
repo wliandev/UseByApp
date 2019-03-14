@@ -24,5 +24,4 @@ public class DatePickerFragment extends DialogFragment {
         return datePickerDialog;
     }
 
-
 }

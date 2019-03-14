@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
-import android.widget.EditText;;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -33,8 +33,7 @@ public class GroceryActivity extends AppCompatActivity implements DatePickerDial
     private ArrayAdapter<Food> groceryAdapter;
     private ListView groceryListView;
     private ArrayList<Food> pantryList;
-    private String current;
-    private View temp;
+    private Food current;
 
 
     @Override
@@ -63,12 +62,11 @@ public class GroceryActivity extends AppCompatActivity implements DatePickerDial
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         Date expdate = c.getTime();
-        Food f = new Food(current);
-        f.setDateBought();
-        f.setDateExpires(expdate);
-        pantryList.add(f);
+        current.setDateBought();
+        current.setDateExpires(expdate);
+        pantryList.add(current);
         writePantry();
-        deleteGrocery(temp);
+        deleteGrocery(current);
     }
 
 
@@ -99,14 +97,13 @@ public class GroceryActivity extends AppCompatActivity implements DatePickerDial
 
 
     public void itemClicked(View view){
-        CheckBox checkBox = (CheckBox)view;
+        final CheckBox checkBox = (CheckBox) view;
         View parent = (View) view.getParent();
         if (checkBox.isChecked()){
-            TextView textView = parent.findViewById(R.id.textView_id);
-            current = String.valueOf(textView.getText());
+            TextView name = parent.findViewById(R.id.textView_id);
+            current = searchFood(String.valueOf(name.getText()));
             DialogFragment datePicker = new DatePickerFragment();
             datePicker.show(getSupportFragmentManager(), "Date Picker");
-            temp = view;
         }
         checkBox.setChecked(false);
     }
@@ -186,11 +183,8 @@ public class GroceryActivity extends AppCompatActivity implements DatePickerDial
         }
     }
 
-    public void deleteGrocery(View view){
-        View parent = (View)view.getParent();
-        TextView taskView = parent.findViewById(R.id.textView_id);
-        String description = String.valueOf(taskView.getText());
-        groceryList.remove(searchFood(description)); // remove from array using a search function (below)
+    public void deleteGrocery(Food f){
+        groceryList.remove(searchFood(f.getName())); // remove from array using a search function (below)
         groceryAdapter.notifyDataSetChanged();
         writeGrocery();
     }
