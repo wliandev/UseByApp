@@ -1,27 +1,19 @@
 package watermelons.myfridge;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.EOFException;
 import java.io.File;
@@ -41,7 +33,6 @@ public class GroceryActivity extends AppCompatActivity implements DatePickerDial
     private ArrayList<Food> groceryList;
     private ArrayAdapter<Food> groceryAdapter;
     private ListView groceryListView;
-    private ArrayList<Food> pantryList;
     private String current;
     private View temp;
 
@@ -53,7 +44,6 @@ public class GroceryActivity extends AppCompatActivity implements DatePickerDial
 
         groceryList = new ArrayList<Food>();
         readGrocery();
-        readPantry();
         groceryListView = findViewById(R.id.grocery_list);
 
         //custom adapter
@@ -75,11 +65,8 @@ public class GroceryActivity extends AppCompatActivity implements DatePickerDial
         Food f = new Food(current);
         f.setDateBought();
         f.setDateExpires(expdate);
-        pantryList.add(f);
-        //String test = DateFormat.getDateInstance(DateFormat.FULL).format(expdate);
-        //Toast.makeText(getBaseContext(), current, Toast.LENGTH_LONG).show();
-        writePantry();
-        deleteGrocery(temp);
+        sendToPantry(f);
+        deleteFood(temp);
     }
 
 
@@ -99,22 +86,27 @@ public class GroceryActivity extends AppCompatActivity implements DatePickerDial
                 groceryAdapter.notifyDataSetChanged();
             }
         });
+        addDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
         addDialog.create();
         addDialog.show();
     }
 
 
     public void itemClicked(View view){
-        CheckBox checkBox = (CheckBox)view;
+        //CheckBox checkBox = (CheckBox)view;
         View parent = (View) view.getParent();
-        if (checkBox.isChecked()){
-            TextView textView = parent.findViewById(R.id.textView_id);
-            current = String.valueOf(textView.getText());
-            DialogFragment datePicker = new DatePickerFragment();
-            datePicker.show(getSupportFragmentManager(), "Date Picker");
-            temp = view;
-        }
-        checkBox.setChecked(false);
+        //if (checkBox.isChecked()){
+        TextView textView = parent.findViewById(R.id.textView_id);
+        current = String.valueOf(textView.getText());
+        DialogFragment datePicker = new DatePickerFragment();
+        datePicker.show(getSupportFragmentManager(), "Date Picker");
+        temp = view;
+        //}
+        //checkBox.setChecked(false);
     }
 
     public void toPantryActivity(View view){
@@ -157,42 +149,18 @@ public class GroceryActivity extends AppCompatActivity implements DatePickerDial
     }
 
 
-    public void writePantry(){
+    public void sendToPantry(Food f){
         try {
             FileOutputStream fos = openFileOutput("PantryList.txt", MODE_PRIVATE);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            for (Food f: pantryList) {
-                oos.writeObject(f);
-            }
+            oos.writeObject(f);
             oos.close();
         } catch (IOException e){
             e.printStackTrace();
         }
     }
 
-    public void readPantry(){
-        File dir = this.getFilesDir();
-        File toDo = new File(dir, "PantryList.txt");
-        try {
-            FileInputStream fis = new FileInputStream(toDo);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            pantryList = new ArrayList<Food>();
-            try{
-                while(true) {
-                    Food f = (Food) ois.readObject();
-                    f.checkExpired();
-                    pantryList.add(f);
-                }
-            } catch (EOFException e) { } // Streams DO NOT return null after end, so just catch EOF.
-        } catch (IOException e) {
-            e.printStackTrace();
-            pantryList = new ArrayList<Food>();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteGrocery(View view){
+    public void deleteFood(View view){
         View parent = (View)view.getParent();
         TextView taskView = parent.findViewById(R.id.textView_id);
         String description = String.valueOf(taskView.getText());
