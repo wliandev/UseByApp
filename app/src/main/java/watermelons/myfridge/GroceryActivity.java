@@ -38,6 +38,8 @@ public class GroceryActivity extends AppCompatActivity {
         groceryList = new ArrayList<Food>();
         groceryListView = findViewById(R.id.grocery_list);
 
+        groceryList.add(new Food("Bread"));
+
         //custom adapter
         groceryAdapter = new GroceryAdapter(this, groceryList);
         groceryListView.setAdapter(groceryAdapter);
