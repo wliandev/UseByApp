@@ -6,4 +6,7 @@
 
     <color name="light_turquoise">#6FCEC5</color>
     <color name="light_pink">#FDBEBB</color>
+    <color name="watermelon_green_button">#34A142</color>
+    <color name="watermelon_green_pantry">#53D564</color>
+    <color name="watermelon_pink_grocery">#EB717D</color>
 </resources>

@@ -9,29 +9,34 @@
         android:id="@+id/grocery_toolbar"
         android:layout_width="match_parent"
         android:layout_height="89dp"
-        android:background="#FF8C8C"
+        android:background="@color/watermelon_pink_grocery"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@android:color/white" />
 
     <ListView
         android:id="@+id/grocery_list"
         android:layout_width="wrap_content"
-        android:layout_height="585dp"
-        android:scrollbarThumbVertical="@color/light_pink"
+        android:layout_height="0dp"
+        android:layout_marginBottom="56dp"
+        android:scrollbarThumbVertical="@color/watermelon_pink_grocery"
         android:verticalScrollbarPosition="left"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/grocery_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/grocery_toolbar"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/grocery_button"
         android:layout_width="206dp"
         android:layout_height="56dp"
-        android:background="@color/light_pink"
+        android:background="@color/watermelon_pink_grocery"
         android:clickable="true"
         android:text="Grocery List"
         android:textColor="#FFFFFF"
@@ -47,7 +52,7 @@
         android:id="@+id/pantry_button"
         android:layout_width="206dp"
         android:layout_height="56dp"
-        android:background="@color/light_turquoise"
+        android:background="@color/watermelon_green_pantry"
         android:onClick="toPantryActivity"
         android:text="Pantry"
         android:textColor="#FFFFFF"
@@ -68,7 +73,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
-        app:backgroundTint="#FF8C8C"
+        app:backgroundTint="@color/watermelon_green_button"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/pantry_button"

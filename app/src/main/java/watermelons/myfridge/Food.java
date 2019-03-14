@@ -1,9 +1,10 @@
 package watermelons.myfridge;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date; //consider using Joda Time
 import java.util.concurrent.TimeUnit;
 
-public class Food implements Comparable<Food>{
+public class Food implements Serializable, Comparable<Food>{
     private String name;
     private Date dateBought;
     private Date dateExpires;
@@ -47,18 +48,14 @@ public class Food implements Comparable<Food>{
         dateBought = Calendar.getInstance().getTime(); //get Date time right now
     }
 
-    public void setDateExpires(int days){
-        Calendar exp = Calendar.getInstance(); //get calendar at Date time right now
-        exp.setTime(dateBought);
-        exp.add(Calendar.DATE, days);
-        dateExpires = exp.getTime();
+    public void setDateExpires(Date exp){
+        dateExpires = exp;
     }
 
     public void checkExpired(){ //runs every time pantry is reloaded
         Date today = Calendar.getInstance().getTime();
         long diffInMillies = Math.abs(dateExpires.getTime() - today.getTime());
         days_until_expired = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-
     }
 
     @Override
