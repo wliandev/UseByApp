@@ -48,7 +48,7 @@ public class PantryAdapter extends ArrayAdapter<Food> {
         } else if (expDays > 1 && expDays <= 3){
             expiration.setTextColor(Color.parseColor("#F78200"));
             clock.setColorFilter(Color.parseColor("#F78200"));
-        } else if (expDays == 1){
+        } else if (expDays <= 1){
             expiration.setTextColor(Color.parseColor("#E23838"));
             clock.setColorFilter(Color.parseColor("#E23838"));
         } else {
