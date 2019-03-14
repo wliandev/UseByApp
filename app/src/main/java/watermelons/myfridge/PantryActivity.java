@@ -41,7 +41,6 @@ public class PantryActivity extends AppCompatActivity {
         pantryAdapter = new PantryAdapter(this, pantryList);
         pantryListView.setAdapter(pantryAdapter);
 
-        Collections.sort(pantryList);
 
         //custom action bar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.pantry_toolbar);
@@ -55,7 +54,7 @@ public class PantryActivity extends AppCompatActivity {
             AlertDialog.Builder addDialog = new AlertDialog.Builder(this);
             addDialog.setCancelable(true);
             addDialog.setTitle("Delete Item");
-            addDialog.setMessage("Are You Sure You Want To Delete This Item?");
+            addDialog.setMessage("Are you sure you want to delete this item?");
             addDialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
